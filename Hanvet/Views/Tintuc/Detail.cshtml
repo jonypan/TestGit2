@@ -1,0 +1,138 @@
+﻿@model Extend.DataAccess.DTO.ArticleDetail
+@using Extend.DataAccess.DTO
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<Article> listNewArticle = ViewBag.listNewArticle;
+    List<Article> listArticleMostView = ViewBag.listArticleMostView;
+    List<Article> listArticleByTag = ViewBag.listArticleByTag;
+}
+
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="box-news">
+                    <div class="news-header">
+                        <a class="news-category" href="@Model.CateLink" title="@Model.CateName">@Model.CateName</a>
+                        <span class="news-time"><i class="fa fa-calendar-o"></i>Model.PublicTime</span>
+                    </div>
+                    <div class="news-title"><h1>@Model.Title</h1></div>
+                    <div class="maincontent">
+                        @Html.Raw(Model.Content)
+                    </div>
+                    <div class="news-social">
+                        <a href="https://api.addthis.com/oexchange/0.8/forward/facebook/offer?url=http://www.traphaco.com.vn/vi/tin-tuc/cay-thuoc-quy/11/252-bim-bim---loai-cay-ky-la.html"><i class="fa fa-facebook"></i></a>
+                        <a href="https://api.addthis.com/oexchange/0.8/forward/pinterest/offer?url=http://www.traphaco.com.vn/vi/tin-tuc/cay-thuoc-quy/11/252-bim-bim---loai-cay-ky-la.html"><i class="fa fa-pinterest"></i></a>
+                        <a href="https://api.addthis.com/oexchange/0.8/forward/twitter/offer?url=http://www.traphaco.com.vn/vi/tin-tuc/cay-thuoc-quy/11/252-bim-bim---loai-cay-ky-la.html"><i class="fa fa-twitter"></i></a>
+                    </div><!-- news-social -->
+                </div><!-- box-news -->
+            </div><!-- col -->
+
+            <div class="col-md-4">
+                <div class="box sidebar-box">
+                    <div class="box-title"><div class="box-title-name">Bài mới nhất</div></div>
+                    <div class="box-content">
+                        <div class="news-featured">
+                            @foreach (var newArticle in listNewArticle)
+                            {
+                                <div class="grid">
+                                    <div class="img">
+                                        <a href="@newArticle.RwURL" title="@newArticle.Title">
+                                            <img src="@newArticle.Banner1" alt="@newArticle.Title" />
+                                        </a>
+                                    </div>
+                                    <div class="g-content">
+                                        <div class="g-row">
+                                            <div class="g-time"><i class="fa fa-calendar-o"></i>@newArticle.PublicTime</div>
+                                        </div>
+                                        <div class="g-row">
+                                            <a class="g-title" href="@newArticle.RwURL" title="@newArticle.Title">
+                                                @newArticle.Title
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div><!-- news-featured -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+
+                <div class="box sidebar-box">
+                    <div class="box-title"><div class="box-title-name">Bài xem nhiều</div></div>
+                    <div class="box-content">
+                        <div class="news-featured">
+                            @foreach (var mostViewArticle in listArticleMostView)
+                            {
+                                <div class="grid">
+                                    <div class="img">
+                                        <a href="@mostViewArticle.RwURL" title="@mostViewArticle.Title">
+                                            <img src="@mostViewArticle.Banner1" alt="@mostViewArticle.Title" />
+                                        </a>
+                                    </div>
+                                    <div class="g-content">
+                                        <div class="g-row">
+                                            <div class="g-time"><i class="fa fa-calendar-o"></i>@mostViewArticle.PublicTime</div>
+                                        </div>
+                                        <div class="g-row">
+                                            <a class="g-title" href="@mostViewArticle.RwURL" title="@mostViewArticle.Title">
+                                                @mostViewArticle.Title
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div><!-- news-featured -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+                @*<div class="box-banner">
+                        <div id="sidebarbanner" class="owl-carousel">
+                            <div class="bb-item">
+                                <a href="javascript:void(0);" title="Cebraton trang tin tuc">
+                                    <iframe class="mediaContent__animation" scrolling="no" src="../upload/html/extract/1476349403/index.html" frameborder="0" width="300" height="250"></iframe>
+                                </a>
+                            </div>
+                        </div><!-- owl-carousel -->
+                    </div><!-- box-banner -->*@
+
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+</div><!-- home-news -->
+
+<div class="news-other">
+    <div class="container">
+        <div class="box">
+            <div class="box-title"><div class="box-title-name">Bài liên quan</div></div>
+            <div class="box-content">
+                <div class="home-news-slider news-grid">
+                    <div id="newsotherslider" class="owl-carousel">
+                        @foreach (var articleByTag in listArticleByTag)
+                        {
+                            <div class="grid">
+                                <div class="img">
+                                    <a href="@articleByTag.ArticleLink" title="@articleByTag.Title">
+                                        <img src="@articleByTag.Banner1" alt="@articleByTag.Title" />
+                                    </a>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <div class="g-time"><i class="fa fa-calendar-o"></i>@articleByTag.PublicTime</div>
+                                    </div>
+                                    <div class="g-row">
+                                        <a class="g-title" href="@articleByTag.ArticleLink" title="@articleByTag.Title">
+                                            @articleByTag.Title
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                    </div><!-- owl-carousel -->
+                </div><!-- home-news-slider -->
+            </div><!-- box-content -->
+        </div><!-- box -->
+    </div><!-- container -->
+</div><!-- news-other -->

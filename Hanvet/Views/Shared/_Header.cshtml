@@ -1,0 +1,322 @@
+﻿@using Hanvet.Code;
+@using Extend.DataAccess.DTO
+@using Extend.DataAccess;
+@using Hanvet.Models;
+@{
+    CategoryContainer cate = SessionHelper.getCateSession();
+    //if (cate == null)
+    //{
+    //    List<Category> list = ADODAOFactory.Instance().CreateCommonDao().GetCate(SessionHelper.getLanguageSession());
+    //    cate = new CategoryContainer();
+    //    cate.cateList = list;
+    //    SessionHelper.setCateSession(cate);
+    //}
+}
+@{
+    if (cate != null)
+    {
+        <div class="navigator">
+            <div class="navigator-top">
+                <div class="container">
+                    <button class="expand-menutop" type="button"><span></span></button>
+                    <div class="menu-top">
+                        <ul>
+                            <li><a href="vi/tuyen-dung.html" title="Tuyển dụng">Tuyển dụng</a></li>
+                            <li><a href="vi/tin-tuc/khoe-tu-thien-nhien/8.html" title="Khỏe từ thiên nhiên">Khỏe từ thiên nhiên</a></li>
+                            <li><a href="vi/6-dieu-khoan-su-dung.html" title="Điều khoản sử dụng">Điều khoản sử dụng</a></li>
+                            <li><a href="vi/lien-he.html" title="Liên hệ">Liên hệ</a></li>
+                            <li class="hidden-xs"><a href="https://login.microsoftonline.com/"><i class="icon-envelop-white"></i> Email</a></li>
+                        </ul>
+                    </div><!-- menu-top -->
+                    <div class="email-top"><a href="https://login.microsoftonline.com/"><i class="icon-envelop-white"></i> Email</a></div>
+                    <div class="box-language">
+                        <ul>
+                            <li><a href="/index" title="Tiếng Anh">e</a></li>
+                            <li class="active"><a href="/trang-chu" title="Tiếng Việt">v</a></li>
+                        </ul>
+                    </div><!-- box-language -->
+                </div><!-- container -->
+            </div><!-- navigator-top -->
+
+            <div class="header-outer">
+                <div class="container">
+                    <div class="header">
+                        <div class="logo">
+                            <a href="//@(Request.Url.Authority)" title="Trang chủ">
+                                <img src="/assets/7802a60d/custom/logo.png" alt="logo" />
+                            </a>
+                        </div>
+                        <button class="expand-menu" type="button"><span></span></button>
+                        <button class="mobile-search expand-search" type="button"><img src="/assets/7802a60d/img/icons/icon42-search.png" alt="search" /></button>
+
+                        <div class="mega-menu mega-search">
+                            <div class="mega-menu-content text-center">
+                                <ul class="search-list">
+                                    <li><div class="radio-inline"><label><input type="radio" class="rd_search" name="rd_search" value="1" checked /> Tìm kiếm Sản phẩm</label></div></li>
+                                    <li><div class="radio-inline"><label><input type="radio" class="rd_search" name="rd_search" value="2" /> Tìm kiếm Tin tức</label></div></li>
+                                    <li><div class="radio-inline"><label><input type="radio" class="rd_search" name="rd_search" value="3" /> Tìm kiếm thông tin cổ đông</label></div></li>
+                                </ul>
+                                <div class="box-search">
+                                    <div class="box-search-inner">
+                                        <input type="text" name="search" id="input_search" class="form-control" placeholder="Tìm kiếm..." />
+                                        <button type="submit" class="btn-search">Tìm kiếm</button>
+                                    </div>
+                                </div>
+                            </div><!-- mega-menu-content -->
+                        </div><!-- mega-search -->
+
+                        <div class="menu">
+                            <ul>
+                                @foreach (var cateParent in cate.getCateByParent(0))
+                                {
+                                    <li class="mega-menu-hover ">
+                                        <a href="@cateParent.RwURL" title="Sản phẩm">@cateParent.Name<span class="btn-submenu fa fa-plus"></span></a>
+                                        <div class="mega-menu">
+                                            <div class="mega-menu-left">
+                                                <img src="@cateParent.IconPath" alt="@cateParent.Title" />
+                                            </div><!-- mega-menu-left -->
+                                            <div class="mega-menu-right">
+                                                <div class="mega-menu-content">
+                                                    <div class="mega-menu-product">
+                                                        <label>@cateParent.Name</label>
+                                                        <p><p>@cateParent.Content</p></p>
+                                                        <a href="@cateParent.RwURL" title="@cateParent.Title">Chi tiết >></a>
+                                                    </div>
+                                                    <div class="mega-menu-list">
+                                                        <ul>
+
+                                                            @foreach (var cateSecond in cate.getCateByParent(cateParent.CateId))
+                                                            {
+                                                                <li class="full-list">
+                                                                    <a href="@cateSecond.RwURL" title="@cateSecond.Title">@cateSecond.Name</a>
+                                                                    @{
+                                                                        var cateThreeList = cate.getCateByParent(cateSecond.CateId);
+                                                                        if (cateThreeList != null && cateThreeList.Count > 0)
+                                                                        {
+                                                                            <ul>
+                                                                                @foreach (var cateThree in cateThreeList)
+                                                                                {
+                                                                                    <li>
+                                                                                        <a href="@cateThree.RwURL" title="@cateThree.Title">
+                                                                                            @cateThree.Name
+                                                                                        </a>
+                                                                                    </li>
+                                                                                }
+                                                                            </ul>
+                                                                        }
+                                                                    }
+                                                                </li>
+                                                                        }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                                                        }
+
+                                @*<li class="mega-menu-hover ">
+                                        <a href="vi/cau-chuyen-traphaco.html" title="câu chuyện traphaco">câu chuyện traphaco<span class="btn-submenu fa fa-plus"></span></a>
+                                        <div class="mega-menu">
+                                            <div class="mega-menu-left">
+                                                <img src="/upload/megamenu/thumbs/4c2ab78c5ed9cb3751b8cd76029fb808.jpg" alt="câu chuyện traphaco" />
+                                            </div><!-- mega-menu-left -->
+                                            <div class="mega-menu-right">
+                                                <div class="mega-menu-content">
+                                                    <div class="mega-menu-product">
+                                                        <label>Câu chuyện Traphaco</label>
+                                                        <p><p>T&igrave;m hiểu về Traphaco. L&agrave; doanh nghiệp dẫn đầu trong ng&agrave;nh dược Việt Nam.</p></p>
+                                                        <a href="vi/cau-chuyen-traphaco.html" title="Xem thêm">Xem thêm &Gt;</a>
+                                                    </div>
+                                                    <div class="mega-menu-list">
+                                                        <ul>
+                                                            <li class="full-list"><a href="vi/cau-chuyen-traphaco.html" title="Lịch sử">Lịch sử</a></li>
+                                                            <li class="full-list"><a href="vi/tam-nhin-su-menh.html" title="Tầm nhìn, sứ mệnh, giá trị cốt lõi">Tầm nhìn, sứ mệnh, giá trị cốt lõi</a></li>
+                                                            <li class="full-list"><a href="vi/co-cau-to-chuc.html" title="Cơ cấu tổ chức">Cơ cấu tổ chức</a></li>
+                                                            <li class="full-list"><a href="vi/cong-ty-thanh-vien.html" title="Công ty liên kết">Công ty liên kết</a></li>
+                                                            <li class="full-list"><a href="vi/danh-hieu-giai-thuong.html" title="Danh hiệu giải thưởng">Danh hiệu giải thưởng</a></li>
+                                                            <li class="full-list"><a href="vi/van-hoa-doanh-nghiep.html" title="Văn hóa doanh nghiệp">Văn hóa doanh nghiệp</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div><!-- mega-menu-content -->
+                                            </div><!-- mega-menu-right -->
+                                        </div><!-- mega-menu -->
+                                    </li>
+                                    <li class="mega-menu-hover ">
+                                        <a href="vi/tin-tuc.html" title="Tin tức">Tin tức<span class="btn-submenu fa fa-plus"></span></a>
+                                        <div class="mega-menu">
+                                            <div class="mega-menu-left">
+                                                <img src="/upload/megaMenu/thumbs/4d9a862c0c368d0e3e8c4c65e91bdfaa.jpg" alt="Tin tức" />
+                                            </div><!-- mega-menu-left -->
+                                            <div class="mega-menu-right">
+                                                <div class="mega-menu-content">
+                                                    <div class="mega-menu-product">
+                                                        <label>Tin tức</label>
+                                                        <p><p>Tin tức về hoạt động của c&ocirc;ng ty, nh&atilde;n h&agrave;ng v&agrave; b&aacute;o ch&iacute; viết về Traphaco</p></p>
+                                                        <a href="vi/tin-tuc.html" title="Xem thêm">Xem thêm &Gt;</a>
+                                                    </div>
+                                                    <div class="mega-menu-list">
+                                                        <ul>
+
+                                                            <li class="full-list"><a href="vi/tin-tuc/tin-tuc/1.html">Tin tức</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc/khach-hang-voi-traphaco/13.html">Khách hàng với Traphaco</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc/bao-chi-voi-traphaco/14.html">Báo chí với Traphaco</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc/khoe-tu-thien-nhien/8.html">Khỏe từ thiên nhiên</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc/cong-ty-tnhh-traphaco-hung-yen/32.html">Công ty TNHH Traphaco Hưng Yên</a></li>
+                                                            <li class="full-list"><a href="vi/thu-vien-anh.html" title="Thư viện ảnh">Thư viện ảnh</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div><!-- mega-menu-content -->
+                                            </div><!-- mega-menu-right -->
+                                        </div><!-- mega-menu -->
+                                    </li>
+                                    <li class="mega-menu-hover ">
+                                        <a href="vi/san-pham.html" title="Sản phẩm">Sản phẩm<span class="btn-submenu fa fa-plus"></span></a>
+                                        <div class="mega-menu">
+                                            <div class="mega-menu-left">
+                                                <img src="/upload/megaMenu/thumbs/6057e2de10e50ae6fa2221204b090bc1.jpg" alt="Sản phẩm" />
+                                            </div><!-- mega-menu-left -->
+                                            <div class="mega-menu-right">
+                                                <div class="mega-menu-content">
+                                                    <div class="mega-menu-product">
+                                                        <label>Sản phẩm</label>
+                                                        <p><p>Sản phẩm của Traphaco&nbsp;được đầu tư nghi&ecirc;n cứu, ph&aacute;t triển v&agrave; sản xuất một c&aacute;ch to&agrave;n diện, l&agrave; kết quả của c&aacute;c c&ocirc;ng tr&igrave;nh nghi&ecirc;n cứu khoa học đầy đủ v&agrave; b&agrave;i bản.</p></p>
+                                                        <a href="vi/san-pham.html" title="Xem danh sách sản phẩm">Xem danh sách sản phẩm &Gt;</a>
+                                                    </div>
+                                                    <div class="mega-menu-list">
+                                                        <ul>
+                                                            <li class="full-list">
+                                                                <a href="vi/san-pham/duoc-pham-1.html" title="Dược phẩm">Dược phẩm</a>
+                                                                <ul>
+                                                                    <li><a href="vi/san-pham/acid-amin---vitamin---khoang-chat-6.html" title="Acid amin - vitamin &amp; khoáng chất">Acid amin - vitamin & khoáng chất</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-an-than-7.html" title="Thuốc an thần">Thuốc an thần</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-bo-tu-duoc-lieu-8.html" title="Thuốc bổ từ dược liệu">Thuốc bổ từ dược liệu</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-chong-viem-dang-men-9.html" title="Thuốc chống viêm dạng men">Thuốc chống viêm dạng men</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-dung-cho-mui-mieng-hong-10.html" title="Thuốc dùng cho mũi-miệng-họng">Thuốc dùng cho mũi-miệng-họng</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-dung-cho-mat-11.html" title="Thuốc dùng cho mắt">Thuốc dùng cho mắt</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-dung-ngoai-da-12.html" title="Thuốc dùng ngoài da">Thuốc dùng ngoài da</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-giam-dau---chong-viem-13.html" title="Thuốc giảm đau - chống viêm">Thuốc giảm đau - chống viêm</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-huong-than-kinh-14.html" title="Thuốc hướng thần kinh">Thuốc hướng thần kinh</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-khang-histamin-15.html" title="Thuốc kháng histamin">Thuốc kháng histamin</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-khang-ki-sinh-trung-16.html" title="Thuốc kháng kí sinh trùng">Thuốc kháng kí sinh trùng</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-khang-nam-17.html" title="Thuốc kháng nấm">Thuốc kháng nấm</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-khang-sinh-18.html" title="Thuốc kháng sinh">Thuốc kháng sinh</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-khang-virus-19.html" title="Thuốc kháng virus">Thuốc kháng virus</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-phu-khoa-20.html" title="Thuốc phụ khoa">Thuốc phụ khoa</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-sat-trung-21.html" title="Thuốc sát trùng">Thuốc sát trùng</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-tim-mach---tuan-hoan-22.html" title="Thuốc tim mạch - tuần hoàn">Thuốc tim mạch - tuần hoàn</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-tieu-hoa-23.html" title="Thuốc tiêu hóa">Thuốc tiêu hóa</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-tang-cuong-mien-dich-va-chong-oxi-hoa-24.html" title="Thuốc tăng cường miễn dịch và chống oxi hóa">Thuốc tăng cường miễn dịch và chống oxi hóa</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-xuong-khop-25.html" title="Thuốc xương khớp">Thuốc xương khớp</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-duong-ho-hap-26.html" title="Thuốc đường hô hấp">Thuốc đường hô hấp</a></li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>
+                                                                <a href="vi/san-pham/thuc-pham-chuc-nang-2.html">Thực phẩm chức năng</a>
+                                                                <ul>
+                                                                    <li><a href="vi/san-pham/acid-amin---vitamin---khoang-chat-6.html" title="Acid amin - vitamin &amp; khoáng chất">Acid amin - vitamin & khoáng chất</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-an-than-7.html" title="Thuốc an thần">Thuốc an thần</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-bo-tu-duoc-lieu-8.html" title="Thuốc bổ từ dược liệu">Thuốc bổ từ dược liệu</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-chong-viem-dang-men-9.html" title="Thuốc chống viêm dạng men">Thuốc chống viêm dạng men</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-dung-cho-mui-mieng-hong-10.html" title="Thuốc dùng cho mũi-miệng-họng">Thuốc dùng cho mũi-miệng-họng</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-dung-cho-mat-11.html" title="Thuốc dùng cho mắt">Thuốc dùng cho mắt</a></li>
+                                                                    <li><a href="vi/san-pham/thuoc-dung-ngoai-da-12.html" title="Thuốc dùng ngoài da">Thuốc dùng ngoài da</a></li>
+                                                                </ul>
+                                                            </li>
+                                                            <li><a href="vi/san-pham/my-pham-3.html">Mỹ phẩm</a></li>
+                                                            <li><a href="vi/san-pham/san-pham-nhap-khau-4.html">Sản phẩm nhập khẩu</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div><!-- mega-menu-content -->
+                                            </div><!-- mega-menu-right -->
+                                        </div><!-- mega-menu -->
+                                    </li>
+                                    <li class="mega-menu-hover ">
+                                        <a href="vi/phan-phoi.html" title="Phân phối">Phân phối<span class="btn-submenu fa fa-plus"></span></a>
+                                        <div class="mega-menu">
+                                            <div class="mega-menu-left">
+                                                <img src="/upload/megaMenu/thumbs/3b70b2134fca6dbcfbaa1ccb3d061eea.jpg" alt="Phân phối" />
+                                            </div><!-- mega-menu-left -->
+
+                                            <div class="mega-menu-right">
+                                                <div class="mega-menu-content">
+                                                    <div class="mega-menu-product">
+                                                        <label>Phân phối</label>
+                                                        <p></p>
+                                                        <a href="vi/phan-phoi.html" title="Phân phối">Phân phối &Gt;</a>
+                                                    </div>
+                                                    <div class="mega-menu-list">
+                                                        <ul>
+                                                            <li class="full-list"><a href="vi/phan-phoi.html" title="Phân phối trong nước">Phân phối trong nước</a></li>
+                                                            <li class="full-list"><a href="vi/phan-phoi.html" title="Phân phối ngoài nước">Phân phối ngoài nước</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div><!-- mega-menu-content -->
+                                            </div><!-- mega-menu-right -->
+                                        </div><!-- mega-menu -->
+                                    </li>
+                                    <li class="mega-menu-hover ">
+                                        <a href="vi/co-dong.html" title="Cổ đông">Cổ đông<span class="btn-submenu fa fa-plus"></span></a>
+                                        <div class="mega-menu">
+                                            <div class="mega-menu-left">
+                                                <img src="/upload/megaMenu/thumbs/8a3ae4a9d40f57a6edd99bf5c5b7b5b0.jpg" alt="Cổ đông" />
+                                            </div><!-- mega-menu-left -->
+
+                                            <div class="mega-menu-right">
+                                                <div class="mega-menu-content">
+                                                    <div class="mega-menu-product">
+                                                        <label>Cổ đông</label>
+                                                        <p></p>
+                                                        <a href="vi/co-dong.html" title="Xem chi tiết">Xem chi tiết &Gt;</a>
+                                                    </div>
+                                                    <div class="mega-menu-list">
+                                                        <ul>
+                                                            <li class="full-list"><a href="vi/tin-tuc-co-dong/19-bao-cao-thuong-nien.html" title="Báo cáo thường niên">Báo cáo thường niên</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc-co-dong/21-bao-cao-tai-chinh.html" title="Báo cáo Tài chính">Báo cáo Tài chính</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc-co-dong/22-dai-hoi-dong-co-dong.html" title="Đại hội đồng cổ đông">Đại hội đồng cổ đông</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc-co-dong/23-cong-bo-thong-tin.html" title="Công bố thông tin">Công bố thông tin</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc-co-dong/28-dieu-le-hoat-dong.html" title="Điều lệ hoạt động">Điều lệ hoạt động</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc-co-dong/29-bao-cao-quan-tri.html" title="Báo cáo quản trị">Báo cáo quản trị</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc-co-dong/30-quy-che-quan-tri.html" title="Quy chế quản trị">Quy chế quản trị</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc-co-dong/31-ban-cao-bach.html" title="Bản cáo bạch">Bản cáo bạch</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div><!-- mega-menu-content -->
+                                            </div><!-- mega-menu-right -->
+                                        </div><!-- mega-menu -->
+                                    </li>
+                                    <li class="mega-menu-hover ">
+                                        <a href="vi/tin-tuc/phat-trien-ben-vung/15.html" title="Phát triển bền vững">Phát triển bền vững<span class="btn-submenu fa fa-plus"></span></a>                            <div class="mega-menu">
+                                            <div class="mega-menu-left">
+                                                <img src="/upload/megaMenu/thumbs/1eb3e77d750acb790041770513b45797.jpg" alt="Phát triển bền vững" />
+                                            </div><!-- mega-menu-left -->
+                                            <div class="mega-menu-right">
+                                                <div class="mega-menu-content">
+                                                    <div class="mega-menu-product">
+                                                        <label>Phát triển bền vững</label>
+                                                        <p><p>Chiến lược &quot;Con đường sức khỏe xanh&quot; của Traphaco c&oacute; sức lan tỏa m&atilde;nh liệt v&agrave; l&acirc;u d&agrave;i, khẳng định quan điểm ph&aacute;t triển của c&ocirc;ng ty: V&igrave; m&ocirc;i trường xanh, v&igrave; sức khỏe cộng đồng, v&igrave; sự phồn vinh của đất nước.</p></p>
+                                                        <a href="vi/tin-tuc/phat-trien-ben-vung/15.html" title="Xem thêm">Xem thêm &Gt;</a>
+                                                    </div>
+                                                    <div class="mega-menu-list">
+                                                        <ul>
+                                                            <li class="full-list"><a href="vi/tin-tuc/voi-cong-dong/16.html" title="Với cộng đồng">Với cộng đồng</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc/voi-nguoi-lao-dong/17.html" title="Với người lao động">Với người lao động</a></li>
+                                                            <li class="full-list"><a href="vi/tin-tuc/voi-moi-truong/18.html" title="Với môi trường">Với môi trường</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div><!-- mega-menu-content -->
+                                            </div><!-- mega-menu-right -->
+                                        </div><!-- mega-menu -->
+                                    </li>*@
+
+                            </ul>
+                        </div><!--menu-->
+                    </div><!--header-->
+                </div><!--container-->
+            </div><!--header - outer-->
+        </div><!--navigator-->
+
+                                                                        }
+}
+
+

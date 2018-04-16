@@ -1,0 +1,169 @@
+﻿@using Extend.DataAccess.DTO
+@model PagedList.IPagedList<Extend.DataAccess.DTO.Product>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="main-banner">
+    <div id="bannerslider" class="owl-carousel">
+        <div class="mb-item">
+            <a href="#" title="Sản phẩm">
+                <img src="../upload/banner/thumbs/1c401a77966490ab9894455601e23373.png" alt="Sản phẩm" />
+            </a>
+            <div class="main-banner-caption">
+                <div class="container">
+                    <div class="main-banner-title">Sản phẩm</div>
+                    <div class="main-banner-desc">Nội dung giới thiệu về sản phẩm</div>
+                </div><!-- container -->
+            </div><!-- main-banner-caption -->
+        </div><!-- mb-item -->
+    </div><!-- owl-carousel -->
+</div><!-- main-banner -->
+<div class="product-outer bg-white">
+    <div class="container">
+        <div class="product-filter">
+            <div class="filter-box">
+                <select class="form-control" id="category_parent">
+                    <option value="">Loại sản phẩm</option>
+                    <option value="1">Dược phẩm</option>
+                    <option value="2">Thực phẩm chức năng</option>
+                    <option value="3">Mỹ phẩm</option>
+                    <option value="4">Sản phẩm nhập khẩu</option>
+                </select>
+                <i class="icon-caret-right"></i>
+            </div><!-- filter-box -->
+            <div class="filter-box">
+                <select class="form-control" id="category_child">
+                    <option value="">Nhóm tác dụng</option>
+                    <option value="6">Acid amin - vitamin & khoáng chất</option>
+                    <option value="7">Thuốc an thần</option>
+                    <option value="8">Thuốc bổ từ dược liệu</option>
+                    <option value="9">Thuốc chống viêm dạng men</option>
+                    <option value="10">Thuốc dùng cho mũi-miệng-họng</option>
+                    <option value="11">Thuốc dùng cho mắt</option>
+                    <option value="12">Thuốc dùng ngoài da</option>
+                    <option value="13">Thuốc giảm đau - chống viêm</option>
+                    <option value="14">Thuốc hướng thần kinh</option>
+                    <option value="15">Thuốc kháng histamin</option>
+                    <option value="16">Thuốc kháng kí sinh trùng</option>
+                    <option value="17">Thuốc kháng nấm</option>
+                    <option value="18">Thuốc kháng sinh</option>
+                    <option value="19">Thuốc kháng virus</option>
+                    <option value="20">Thuốc phụ khoa</option>
+                    <option value="21">Thuốc sát trùng</option>
+                    <option value="22">Thuốc tim mạch - tuần hoàn</option>
+                    <option value="23">Thuốc tiêu hóa</option>
+                    <option value="24">Thuốc tăng cường miễn dịch và chống oxi hóa</option>
+                    <option value="25">Thuốc xương khớp</option>
+                    <option value="26">Thuốc đường hô hấp</option>
+                </select>
+                <i class="icon-caret-right"></i>
+            </div><!-- filter-box -->
+        </div><!-- product-filter -->
+
+        <div class="product-grid">
+            <ul class="clearfix">
+                @foreach (var sanpham in Model)
+                {
+                    <li>
+                        <div class="product-item">
+                            <div class="pi-thumb">
+                                <a href="@sanpham.RwURL" title="@sanpham.Title">
+                                    <img src="@sanpham.Image" alt="@sanpham.Title" />
+                                </a>
+                                <!--<span class="icon-no1"></span>-->
+                            </div>
+                            <div class="pi-content">
+                                <div class="pi-row"><a class="pi-title" href="@sanpham.RwURL" title="@sanpham.Title">@sanpham.Title</a></div>
+                                <div class="pi-row">
+                                    <div class="pi-desc">
+                                       @sanpham.Summary
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div><!-- product-grid -->
+
+        <div class="box-page">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div><!-- box-page -->
+    </div><!-- container -->
+</div><!-- product-outer -->
+
+@*<div class="product-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="box-title"><div class="box-title-name">Khỏe từ thiên nhiên</div></div>
+                    <div class="box-content">
+                        <div class="news-featured">
+                            <div class="grid">
+                                <div class="img">
+                                    <a href="tin-tuc/co-dong/20/55-su-dung-boganic-thuong-xuyen-duoc-khong-.html" title="Sử dụng Boganic thường xuyên được không?">
+                                        <img src="../upload/news/thumbs/20102016082414_20102016082413_Boganic.jpg" alt="Sử dụng Boganic thường xuyên được không?" />
+                                    </a>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <div class="g-time"><i class="fa fa-calendar-o"></i>Jul 27, 2016</div>
+                                    </div>
+                                    <div class="g-row">
+                                        <a class="g-title" href="tin-tuc/co-dong/20/55-su-dung-boganic-thuong-xuyen-duoc-khong-.html" title="Sử dụng Boganic thường xuyên được không?">
+                                            Sử dụng Boganic thường xuyên được không?
+                                        </a>
+                                    </div>
+                                </div>
+                            </div><!-- grid --><div class="grid">
+                                <div class="img">
+                                    <a href="tin-tuc/tin-tuc/1/66-top-10-cong-ty-duoc-viet-nam-uy-tin-nam-2016.html" title="Top 10 công ty dược Việt Nam uy tín năm 2016">
+                                        <img src="../upload/news/thumbs/1.jpg" alt="Top 10 công ty dược Việt Nam uy tín năm 2016" />
+                                    </a>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <div class="g-time"><i class="fa fa-calendar-o"></i>Oct 25, 2016</div>
+                                    </div>
+                                    <div class="g-row">
+                                        <a class="g-title" href="tin-tuc/tin-tuc/1/66-top-10-cong-ty-duoc-viet-nam-uy-tin-nam-2016.html" title="Top 10 công ty dược Việt Nam uy tín năm 2016">
+                                            Top 10 công ty dược Việt Nam uy tín năm 2016
+                                        </a>
+                                    </div>
+                                </div>
+                            </div><!-- grid --><div class="grid">
+                                <div class="img">
+                                    <a href="tin-tuc/tin-tuc/1/45-ong-tran-tuc-ma--tong-giam-doc-cong-ty-cp-traphaco-vinh-du-la-1-trong-100-doanh-nhan-viet-nam-tieu-bieu-2016.html" title="Ông Trần Túc Mã -Tổng giám đốc Công ty CP Traphaco vinh dự là 1 trong 100 doanh nhân Việt Nam tiêu biểu 2016">
+                                        <img src="../upload/news/thumbs/6fe44793dc5869b822146956cf8ab0f5.jpg" alt="Ông Trần Túc Mã -Tổng giám đốc Công ty CP Traphaco vinh dự là 1 trong 100 doanh nhân Việt Nam tiêu biểu 2016" />
+                                    </a>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <div class="g-time"><i class="fa fa-calendar-o"></i>Oct 12, 2016</div>
+                                    </div>
+                                    <div class="g-row">
+                                        <a class="g-title" href="tin-tuc/tin-tuc/1/45-ong-tran-tuc-ma--tong-giam-doc-cong-ty-cp-traphaco-vinh-du-la-1-trong-100-doanh-nhan-viet-nam-tieu-bieu-2016.html" title="Ông Trần Túc Mã -Tổng giám đốc Công ty CP Traphaco vinh dự là 1 trong 100 doanh nhân Việt Nam tiêu biểu 2016">
+                                            Ông Trần Túc Mã -Tổng giám đốc Công ty CP Traphaco vinh dự là 1 trong 100 doanh nhân Việt Nam tiêu biểu 2016
+                                        </a>
+                                    </div>
+                                </div>
+                            </div><!-- grid -->
+                        </div><!-- news-featured -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+            </div><!-- col -->
+
+            <div class="col-md-8">
+                <div class="product-banner">
+                    <a href="javascript:void(0);" title="Cebraton san pham">
+                        <img src="../upload/banner/thumbs/ca8500b8af8a358a9b87c25573bfd9f1.jpg" alt="Cebraton san pham" />
+                    </a>
+                </div><!-- product-banner -->
+            </div><!-- col -->
+
+        </div><!-- row -->
+    </div><!-- container -->
+</div><!-- product-news -->*@

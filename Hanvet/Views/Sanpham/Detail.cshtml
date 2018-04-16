@@ -1,0 +1,390 @@
+﻿@model Extend.DataAccess.DTO.ProductDetail
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="product-detail bg-gray">
+    <div class="container">
+        <div class="product-detail-inner clearfix">
+            <div class="product-detail-left">
+                <div class="product-detail-img">
+                    <div class="tb-table">
+                        <div class="tb-row">
+                            <div class="tb-cell">
+                                <img width="500" src="@Model.Image" alt="@Model.Title" />
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- product-detail-img -->
+                <div class="product-detail-thumb">
+                    <ul>
+                        <li class="active"><a href="@Model.RwURL" title="@Model.Title"><img src="@Model.Image" alt="@Model.Title" /></a></li>
+                    </ul>
+                </div><!-- product-detail-thumb -->
+
+                <div class="clearfix"></div>
+            </div><!-- product-detail-left -->
+
+            <div class="product-detail-right">
+                <div class="product-detail-row">
+                    <div class="product-detail-title"><h1>@Model.Title</h1></div>
+                </div>
+                <div class="product-detail-row">
+                    <div class="product-detail-desc">@Model.CateName</div>
+                    <!--<div class="product-detail-time"><i class="fa fa-calendar-o"></i>Aug 27, 2016</div>-->
+                </div>
+                <!--
+                <div class="product-detail-row">
+                    <span class="icon-no1"></span>
+                </div>
+                -->
+                <div class="product-detail-row">
+                    <div class="maincontent">
+                        @Model.Summary
+                    </div><!-- maincontent -->
+                </div>
+            </div><!-- product-detail-right -->
+        </div><!-- product-detail-inner -->
+
+        <div class="product-tabs">
+            <ul role="tablist">
+                <li role="presentation" class="active"><a role="tab" data-toggle="tab" href="#tab1">Thông tin chi tiết</a></li>
+                <li role="presentation"><a role="tab" data-toggle="tab" href="#tab2">Câu hỏi thường gặp</a></li>
+                <li role="presentation"><a role="tab" data-toggle="tab" href="#tab3">Hỏi - đáp</a></li>
+            </ul>
+        </div><!-- product-tabs -->
+    </div><!-- container -->
+</div><!-- product-detail -->
+
+<div class="product-content bg-white">
+    <div class="container">
+        <div role="tabpanel" class="product-pane active" id="tab1">
+            <div class="product-content-list">
+                <div class="product-content-item clearfix active">
+                    <label>Nội dung:</label>
+                    <div class="maincontent">
+                        @Model.Content
+                    </div>
+                </div><!-- product-content-item -->
+            </div><!-- product-content-list -->
+            <div class="product-content-more"><a href="#"><span class="pcm-icon"><i class="icon20-double-down"></i></span>Xem thêm</a></div>
+        </div><!-- product-pane -->
+
+        <div role="tabpanel" class="product-pane" id="tab2">
+            <div class="faqs clearfix">
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-item-title">
+                            <div class="faq-item-icon"><i class="icon32-faq"></i></div>
+                            <div class="faq-item-name">Làm thế nào để biết trẻ bị suy dinh dưỡng?</div>
+                        </div><!-- faq-item-title -->
+                        <div class="faq-item-content">
+                            <label>Trả lời:</label>
+                            <div class="maincontent">
+                                <p>
+                                    Muốn biết trẻ c&oacute; bị suy dinh dưỡng hay kh&ocirc;ng, c&aacute;c b&agrave; mẹ cần phải theo d&otilde;i trẻ c&acirc;n nặng thường xuy&ecirc;n theo biểu đồ ph&aacute;t triển c&acirc;n nặng, chiều cao của trẻ.<br />
+                                    Nếu thấy 2, 3 th&aacute;ng m&agrave; trẻ kh&ocirc;ng l&ecirc;n c&acirc;n cần phải đưa trẻ đi kh&aacute;m b&aacute;c sĩ để t&igrave;m nguy&ecirc;n nh&acirc;n.
+                                </p>
+                            </div>
+                        </div><!-- faq-item-content -->
+                    </div><!-- faq-item -->
+                    <div class="faq-item">
+                        <div class="faq-item-title">
+                            <div class="faq-item-icon"><i class="icon32-faq"></i></div>
+                            <div class="faq-item-name">Lời khuyên giúp trẻ biếng ăn?</div>
+                        </div><!-- faq-item-title -->
+                        <div class="faq-item-content">
+                            <label>Trả lời:</label>
+                            <div class="maincontent">
+                                <p>
+                                    <strong>Điều trị bằng thuốc</strong><br />
+                                    T&ugrave;y theo triệu chứng bệnh m&agrave; c&oacute; thể sử dụng thuốc điều trị của b&aacute;c sĩ. Trong trường hợp cần c&oacute; thể bổ sung c&aacute;c men ti&ecirc;u h&oacute;a enzym, vitamin v&agrave; vi lượng c&oacute; vai tr&ograve; k&iacute;ch th&iacute;ch chuyển h&oacute;a v&agrave; ti&ecirc;u h&oacute;a của cơ thể theo hướng dẫn của b&aacute;c sĩ. Viaviovit l&agrave; một sản phẩm bổ sung hệ vi sinh vật, c&aacute;c vitamin cần thiết gi&uacute;p tăng cường hệ ti&ecirc;u h&oacute;a thường d&ugrave;ng cho c&aacute;c trường hợp trẻ biếng ăn, trẻ bị ti&ecirc;u h&oacute;a, t&aacute;o b&oacute;n, ch&aacute;n ăn...
+                                </p>
+                            </div>
+                        </div><!-- faq-item-content -->
+                    </div><!-- faq-item -->
+                </div><!-- faq-list -->
+                <div class="faq-view">
+                    <label>Trả lời:</label>
+                    <div class="maincontent"></div>
+                </div><!-- faq-view -->
+            </div><!-- faqs -->
+        </div><!-- product-pane -->
+
+        <div role="tabpanel" class="product-pane" id="tab3">
+            <div class="form-title">Chào bạn ! Hãy để lại câu hỏi, chúng tôi sẽ giải đáp những thắc mắc của bạn một cách nhanh nhất !</div>
+            <div class="form clearfix">
+                <div class="form-left">
+                    <div class="form-group">
+                        <label>Họ tên <span class="text-warning">(*)</span>:</label>
+                        <input type="text" name="name" id="contactName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email <span class="text-warning">(*)</span>:</label>
+                        <input type="text" name="email" id="contactEmail" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Số điện thoại <span class="text-warning">(*)</span>:</label>
+                        <input type="text" name="phone" id="contactPhone" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Sản phẩm quan tâm <span class="text-warning">(*)</span>:</label>
+                        <input type="text" name="title" id="contactTitle" class="form-control" value="Ampelop" />
+                        <input type="hidden" name="product_id" id="product_id" value="11" />
+                    </div>
+                </div>
+                <div class="form-right">
+                    <div class="form-group">
+                        <label>Nội dung <span class="text-warning">(*)</span>:</label>
+                        <textarea class="form-control" name="contactContent" id="contactContent"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success send-product">Gửi câu hỏi<i class="fa fa-angle-double-right icon-right"></i></button>
+                    </div>
+                </div>
+            </div><!-- form -->
+        </div><!-- product-pane -->
+    </div><!-- container -->
+</div><!-- product-content -->
+
+<div class="product-other-outer bg-white">
+    <div class="container">
+        <div class="box">
+            <div class="box-title"><div class="box-title-name no-border">Sản phẩm cùng loại</div></div>
+            <div class="box-content">
+                <div class="product-other">
+                    <div id="poslider" class="owl-carousel">
+                        <div class="product-item">
+                            <div class="pi-thumb">
+                                <a href="97-ovalax.html" title="Ovalax">
+                                    <img src="../../upload/product/thumbs2/Ovalax.png" alt="Ovalax" />
+                                </a>
+                                <!--<span class="icon-no1"></span>-->
+                            </div>
+                            <div class="pi-content">
+                                <div class="pi-row"><a class="pi-title" href="97-ovalax.html" title="Ovalax">Ovalax</a></div>
+                                <div class="pi-row">
+                                    <div class="pi-desc">
+                                        Vi&ecirc;n nhuận tr&agrave;ng điều trị hiệu quả t&aacute;o b&oacute;n
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                            <div class="product-item">
+                            <div class="pi-thumb">
+                                <a href="70-tradin-extra.html" title="Tradin Extra">
+                                    <img src="../../upload/product/thumbs/140d4aee225ba4d2ab36a6eab797570e.png" alt="Tradin Extra" />
+                                </a>
+                                <!--<span class="icon-no1"></span>-->
+                            </div>
+                            <div class="pi-content">
+                                <div class="pi-row"><a class="pi-title" href="70-tradin-extra.html" title="Tradin Extra">Tradin Extra</a></div>
+                                <div class="pi-row">
+                                    <div class="pi-desc">
+                                        Điều trị rối loạn ti&ecirc;u h&oacute;a - vi&ecirc;m đại tr&agrave;ng
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                            <div class="product-item">
+                            <div class="pi-thumb">
+                                <a href="19-thuoc-bo-gan-boganic-forte.html" title="Thuốc bổ gan Boganic Forte">
+                                    <img src="../../upload/product/thumbs2/73d179833f345535c9f63309908bfe0c.png" alt="Thuốc bổ gan Boganic Forte" />
+                                </a>
+                                <!--<span class="icon-no1"></span>-->
+                            </div>
+                            <div class="pi-content">
+                                <div class="pi-row"><a class="pi-title" href="19-thuoc-bo-gan-boganic-forte.html" title="Thuốc bổ gan Boganic Forte">Thuốc bổ gan Boganic Forte</a></div>
+                                <div class="pi-row">
+                                    <div class="pi-desc">
+                                        Nhuận gan &ndash; Lợi mật &ndash; Th&ocirc;ng tiểu &ndash; Giải độc
+
+                                        Th&ocirc;ng tin chi tiết truy cập website www.boganic.vn
+
+                                        Boganic l&agrave; thuốc bổ gan duy&nbsp;nhất tại Việt Nam được l&agrave;m từ&nbsp;100% dược liệu sạch, an to&agrave;n&nbsp;&ndash; đạt chuẩn GACP-WHO (thực&nbsp;h&agrave;nh tốt trồng trọt v&agrave; thu h&aacute;i&nbsp;c&acirc;y thuốc theo khuyến c&aacute;o của&nbsp;Tổ chức Y tế Thế giới), c&oacute; t&aacute;c&nbsp;dụng nhuận gan &ndash; lợi mật &ndash;&nbsp;th&ocirc;ng tiểu &ndash; giải độc gan.&nbsp;
+
+                                        Theo kết quả nghi&ecirc;n cứu l&acirc;m&nbsp;s&agrave;ng tại Bệnh viện K Trung&nbsp;Ương v&agrave; bệnh viện đa khoa&nbsp;tỉnh Th&aacute;i B&igrave;nh, thuốc bổ gan&nbsp;Boganic gi&uacute;p hạ men gan&nbsp;hiệu quả chỉ sau 10 ng&agrave;y d&ugrave;ng&nbsp;thuốc.
+                                        Hiệu quả của Boganic đ&atilde; được&nbsp;kiểm chứng qua thực tế sử&nbsp;dụng v&agrave; lu&ocirc;n nhận được sự t&iacute;n&nbsp;nhiệm của c&aacute;c thầy thuốc v&agrave;&nbsp;người ti&ecirc;u d&ugrave;ng từ năm 1999&nbsp;đến nay.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                            <div class="product-item">
+                            <div class="pi-thumb">
+                                <a href="20-carmanus.html" title="Carmanus">
+                                    <img src="../../upload/product/thumbs/032d332ea30413f189d31bb15fb2424f.png" alt="Carmanus" />
+                                </a>
+                                <!--<span class="icon-no1"></span>-->
+                            </div>
+                            <div class="pi-content">
+                                <div class="pi-row"><a class="pi-title" href="20-carmanus.html" title="Carmanus">Carmanus</a></div>
+                                <div class="pi-row"><div class="pi-desc">Giải ph&aacute;p cho gan nhiễm mỡ</div></div>
+                            </div>
+                        </div>                                                            <div class="product-item">
+                            <div class="pi-thumb">
+                                <a href="30-dafrazol.html" title="Dafrazol">
+                                    <img src="../../upload/product/thumbs/9df3595ea5b766f94e96aaedfe404170.png" alt="Dafrazol" />
+                                </a>
+                                <!--<span class="icon-no1"></span>-->
+                            </div>
+                            <div class="pi-content">
+                                <div class="pi-row"><a class="pi-title" href="30-dafrazol.html" title="Dafrazol">Dafrazol</a></div>
+                                <div class="pi-row"><div class="pi-desc">Trị lo&eacute;t dạ d&agrave;y - t&aacute; tr&agrave;ng</div></div>
+                            </div>
+                        </div>                                                            <div class="product-item">
+                            <div class="pi-thumb">
+                                <a href="48-livbilnic.html" title="Livbilnic">
+                                    <img src="../../upload/product/thumbs2/58c7cc927756d590ee0c6c8b543990e7.png" alt="Livbilnic" />
+                                </a>
+                                <!--<span class="icon-no1"></span>-->
+                            </div>
+                            <div class="pi-content">
+                                <div class="pi-row"><a class="pi-title" href="48-livbilnic.html" title="Livbilnic">Livbilnic</a></div>
+                                <div class="pi-row">
+                                    <div class="pi-desc">
+                                        Hỗ trợ điều trị vi&ecirc;m gan virus
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                            <div class="product-item">
+                            <div class="pi-thumb">
+                                <a href="57-tottri.html" title="Tottri">
+                                    <img src="../../upload/product/thumbs2/a2fba35389f3821f3a148df59473d5b2.png" alt="Tottri" />
+                                </a>
+                                <!--<span class="icon-no1"></span>-->
+                            </div>
+                            <div class="pi-content">
+                                <div class="pi-row"><a class="pi-title" href="57-tottri.html" title="Tottri">Tottri</a></div>
+                                <div class="pi-row">
+                                    <div class="pi-desc">
+                                        Tottri - Tốt cho người mắc bệnh trĩ
+
+                                        Tham khảo chi tiết www.tottri.vn
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                            <div class="product-item">
+                            <div class="pi-thumb">
+                                <a href="60-sitar.html" title="Sitar">
+                                    <img src="../../upload/product/thumbs2/e993da2e9ac9bcb0a07691f5d3e79471.png" alt="Sitar" />
+                                </a>
+                                <!--<span class="icon-no1"></span>-->
+                            </div>
+                            <div class="pi-content">
+                                <div class="pi-row"><a class="pi-title" href="60-sitar.html" title="Sitar">Sitar</a></div>
+                                <div class="pi-row">
+                                    <div class="pi-desc">
+                                        Ph&ograve;ng v&agrave; hỗ trợ điều trị trĩ nội - trĩ ngoại
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                            <div class="product-item">
+                            <div class="pi-thumb">
+                                <a href="66-solvella.html" title="Solvella">
+                                    <img src="../../upload/product/thumbs/489029154b92a7785ec0cb31370a3a5d.png" alt="Solvella" />
+                                </a>
+                                <!--<span class="icon-no1"></span>-->
+                            </div>
+                            <div class="pi-content">
+                                <div class="pi-row"><a class="pi-title" href="66-solvella.html" title="Solvella">Solvella</a></div>
+                                <div class="pi-row">
+                                    <div class="pi-desc">
+                                        Hỗ trợ điều trị sỏi mật, dự ph&ograve;ng sỏi mật t&aacute;i ph&aacute;t
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                            <div class="product-item">
+                            <div class="pi-thumb">
+                                <a href="69-tra-gung.html" title="Trà gừng">
+                                    <img src="../../upload/product/thumbs2/15e558a13fd2b38340c629e9ea0ba7cd.png" alt="Trà gừng" />
+                                </a>
+                                <!--<span class="icon-no1"></span>-->
+                            </div>
+                            <div class="pi-content">
+                                <div class="pi-row"><a class="pi-title" href="69-tra-gung.html" title="Trà gừng">Trà gừng</a></div>
+                                <div class="pi-row">
+                                    <div class="pi-desc">
+                                        Trị cảm lạnh, đau bụng lạnh
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- owl-carousel -->
+                </div><!-- product-other -->
+            </div><!-- box-content -->
+        </div><!-- box -->
+    </div><!-- container -->
+</div><!-- product-other-outer -->
+
+@*<div class="product-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="box-title"><div class="box-title-name">Khỏe từ thiên nhiên</div></div>
+                    <div class="box-content">
+                        <div class="news-featured">
+                            <div class="grid">
+                                <div class="img">
+                                    <a href="../tin-tuc/co-dong/20/55-su-dung-boganic-thuong-xuyen-duoc-khong-.html" title="Sử dụng Boganic thường xuyên được không?">
+                                        <img src="../../upload/news/thumbs/20102016082414_20102016082413_Boganic.jpg" alt="Sử dụng Boganic thường xuyên được không?" />
+                                    </a>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <div class="g-time"><i class="fa fa-calendar-o"></i>Jul 27, 2016</div>
+                                    </div>
+                                    <div class="g-row">
+                                        <a class="g-title" href="../tin-tuc/co-dong/20/55-su-dung-boganic-thuong-xuyen-duoc-khong-.html" title="Sử dụng Boganic thường xuyên được không?">
+                                            Sử dụng Boganic thường xuyên được không?
+                                        </a>
+                                    </div>
+                                </div>
+                            </div><!-- grid --><div class="grid">
+                                <div class="img">
+                                    <a href="../tin-tuc/tin-tuc/1/66-top-10-cong-ty-duoc-viet-nam-uy-tin-nam-2016.html" title="Top 10 công ty dược Việt Nam uy tín năm 2016">
+                                        <img src="../../upload/news/thumbs/1.jpg" alt="Top 10 công ty dược Việt Nam uy tín năm 2016" />
+                                    </a>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <div class="g-time"><i class="fa fa-calendar-o"></i>Oct 25, 2016</div>
+                                    </div>
+                                    <div class="g-row">
+                                        <a class="g-title" href="../tin-tuc/tin-tuc/1/66-top-10-cong-ty-duoc-viet-nam-uy-tin-nam-2016.html" title="Top 10 công ty dược Việt Nam uy tín năm 2016">
+                                            Top 10 công ty dược Việt Nam uy tín năm 2016
+                                        </a>
+                                    </div>
+                                </div>
+                            </div><!-- grid --><div class="grid">
+                                <div class="img">
+                                    <a href="../tin-tuc/tin-tuc/1/45-ong-tran-tuc-ma--tong-giam-doc-cong-ty-cp-traphaco-vinh-du-la-1-trong-100-doanh-nhan-viet-nam-tieu-bieu-2016.html" title="Ông Trần Túc Mã -Tổng giám đốc Công ty CP Traphaco vinh dự là 1 trong 100 doanh nhân Việt Nam tiêu biểu 2016">
+                                        <img src="../../upload/news/thumbs/6fe44793dc5869b822146956cf8ab0f5.jpg" alt="Ông Trần Túc Mã -Tổng giám đốc Công ty CP Traphaco vinh dự là 1 trong 100 doanh nhân Việt Nam tiêu biểu 2016" />
+                                    </a>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <div class="g-time"><i class="fa fa-calendar-o"></i>Oct 12, 2016</div>
+                                    </div>
+                                    <div class="g-row">
+                                        <a class="g-title" href="../tin-tuc/tin-tuc/1/45-ong-tran-tuc-ma--tong-giam-doc-cong-ty-cp-traphaco-vinh-du-la-1-trong-100-doanh-nhan-viet-nam-tieu-bieu-2016.html" title="Ông Trần Túc Mã -Tổng giám đốc Công ty CP Traphaco vinh dự là 1 trong 100 doanh nhân Việt Nam tiêu biểu 2016">
+                                            Ông Trần Túc Mã -Tổng giám đốc Công ty CP Traphaco vinh dự là 1 trong 100 doanh nhân Việt Nam tiêu biểu 2016
+                                        </a>
+                                    </div>
+                                </div>
+                            </div><!-- grid -->
+                        </div><!-- news-featured -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+            </div><!-- col -->
+
+            <div class="col-md-8">
+                <div class="product-banner">
+                    <a href="http://cebraton.vn/" title="Cebraton CTSP" target="_blank">
+                        <img src="../../upload/banner/thumbs/63ef41ca2752a833d6619a0d963c7589.jpg" alt="Cebraton CTSP" />
+                    </a>
+                </div><!-- product-banner -->
+            </div><!-- col -->
+
+        </div><!-- row -->
+    </div><!-- container -->
+</div><!-- product-news -->*@

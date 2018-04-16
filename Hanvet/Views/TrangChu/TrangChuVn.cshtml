@@ -1,0 +1,489 @@
+﻿@using Extend.DataAccess.DTO
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<Article> listArticleByOrder = ViewBag.listArticleByOrder;
+    List<Product> listProductByOrder = ViewBag.listProductByOrder;
+}
+<div class="main-slider">
+    <div class="video-outer">
+        <div class="video-thumb-slider">
+            <div id="heartslider" class="owl-carousel" data-slider-id="ms2">
+                <div class="" datatr="Slide1">
+                    <img src="/upload/banner/thumbs/098cdb05934e422132c582aa8ad20c0a.png" alt="Danh hiệu và giải thưởng" />
+                </div>
+                <div class="" datatr="Slide2">
+                    <img src="/upload/banner/thumbs/098cdb05934e422132c582aa8ad20c0a.png" alt="Danh hiệu và giải thưởng" />
+                </div>
+                <div class="" datatr="Slide3">
+                    <img src="/upload/banner/thumbs/098cdb05934e422132c582aa8ad20c0a.png" alt="Danh hiệu và giải thưởng" />
+                </div>
+                <div class="" datatr="Slide4">
+                    <img src="/upload/banner/thumbs/098cdb05934e422132c582aa8ad20c0a.png" alt="Danh hiệu và giải thưởng" />
+                </div>
+                <div class="" datatr="Slide5">
+                    <img src="/upload/banner/thumbs/098cdb05934e422132c582aa8ad20c0a.png" alt="Danh hiệu và giải thưởng" />
+                </div>
+            </div><!-- owl-carousel -->
+            <div class="main-slider-dots">
+                <ul class="owl-thumbs" data-slider-id="ms2">
+                    <li class="owl-thumb-item hidden">
+                        <a href="javascript:void(0);" title="">
+                            <img class="step" src="/assets/7802a60d/img/ms-step-1.png" alt="step 1" />
+                            <img class="step-hover" src="/assets/7802a60d/img/ms-step-1-active.png" alt="step 1" />
+                        </a>
+                    </li>
+                    <li class="owl-thumb-item">
+                        <a href="javascript:void(0);" title="Vùng trồng">
+                            <img class="step" src="/assets/7802a60d/img/ms-step-1.png" alt="step 2" />
+                            <img class="step-hover" src="/assets/7802a60d/img/ms-step-1-active.png" alt="step 2" />
+                        </a>
+                    </li>
+                    <li class="owl-thumb-item">
+                        <a href="javascript:void(0);" title="Nhà máy">
+                            <img class="step" src="/assets/7802a60d/img/ms-step-2.png" alt="step 3" />
+                            <img class="step-hover" src="/assets/7802a60d/img/ms-step-2-active.png" alt="step 3" />
+                        </a>
+                    </li>
+                    <li class="owl-thumb-item">
+                        <a href="javascript:void(0);" title="Sản phẩm">
+                            <img class="step" src="/assets/7802a60d/img/ms-step-3.png" alt="step 3" />
+                            <img class="step-hover" src="/assets/7802a60d/img/ms-step-3-active.png" alt="step 4" />
+                        </a>
+                    </li>
+                    <li class="owl-thumb-item">
+                        <a href="javascript:void(0);" title="Phân phối">
+                            <img class="step" src="/assets/7802a60d/img/ms-step-4.png" alt="step 5" />
+                            <img class="step-hover" src="/assets/7802a60d/img/ms-step-4-active.png" alt="step 5" />
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- main-slider-dots -->
+        </div><!-- video-thumb-slider -->
+    </div><!-- video-outer -->
+    <a class="scroll-down" href="javascript:void(0);"><span class="text">Xem thêm</span><span class="scroll"></span></a>
+</div><!-- main-slider -->
+
+<div class="home-news bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="box">
+                    <div class="box-title"><div class="box-title-name">Tin tức - Sự kiện</div></div>
+                    <div class="box-content">
+                        <div class="home-news-top">
+                            <div class="grid">
+                                @{
+                                    if (listArticleByOrder.Count > 0)
+                                    {
+                                        <div class="img">
+                                            <a href="@listArticleByOrder[0].RwURL" title="@listArticleByOrder[0].Title">
+                                                <img src="@listArticleByOrder[0].Banner1" alt="@listArticleByOrder[0].Title" />
+                                            </a>
+                                        </div>
+                                        <div class="g-content">
+                                            <div class="g-row">
+                                                <a class="g-category" href="@listArticleByOrder[0].CateLink" title="Tin tức">
+                                                    @listArticleByOrder[0].CateName
+                                                </a>
+                                                <div class="g-time"><i class="fa fa-calendar-o"></i>@listArticleByOrder[0].PublicTime</div>
+                                            </div>
+                                            <div class="g-row">
+                                                <a class="g-title" href="@listArticleByOrder[0].RwURL" title="@listArticleByOrder[0].Title">
+                                                    @listArticleByOrder[0].Title
+                                                </a>
+                                            </div>
+                                            <div class="g-row g-desc">@listArticleByOrder[0].Summary</div>
+                                        </div>
+                                    }
+                                }
+
+                            </div><!-- grid -->
+                        </div><!-- home-news-top -->
+
+                        <div class="home-news-slider news-grid">
+                            <div id="hnslider" class="owl-carousel">
+                                @foreach (var article in listArticleByOrder)
+                                {
+                                    <div class="grid">
+                                        <div class="img">
+                                            <a href="@article.RwURL" title="@article.Title">
+                                                <img src="@article.Banner1" alt="@article.Title" />
+                                            </a>
+                                        </div>
+                                        <div class="g-content">
+                                            <div class="g-row">
+                                                <a class="g-category" href="@listArticleByOrder[0].CateLink" title="Tin tức">
+                                                    @article.CateName
+                                                </a>
+                                                <div class="g-time"><i class="fa fa-calendar-o"></i>@article.PublicTime</div>
+                                            </div>
+                                            <div class="g-row">
+                                                <a class="g-title" href="@article.RwURL" title="@article.Title">
+                                                    @article.Title
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div><!-- owl-carousel -->
+                        </div><!-- home-news-slider -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+            </div><!-- col -->
+
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="box-title"><div class="box-title-name">Câu chuyện Hanvet</div></div>
+                    <div class="box-content">
+                        <div class="box-story">
+                            <div class="box-story-content">
+                                <div id="storyslider" class="owl-carousel" data-slider-id="1">
+                                    <div class="box-story-item">
+                                        <i class="icon-quoute-left"></i>
+                                        Với hơn 44 năm xây dựng, Traphaco đã kế thừa truyền thống và phát triển nền y học cổ truyền lên một tầm cao mới bằng công nghệ hiện đại, bằng tài trí của người Việt, gánh vác sứ mệnh phục vụ sức khỏe cộng đồng, vững bước tương lai trên “Con đường Sức khỏe Xanh”.
+                                    </div><!-- box-story-item -->
+                                    <div class="box-story-item">
+                                        <i class="icon-quoute-left"></i>
+                                        Đội ngũ lãnh đạo Traphaco – Những người tiên phong xây dựng các hướng kinh doanh mới cũng như áp dụng các công cụ quản trị tiên tiến cho công ty.
+                                    </div><!-- box-story-item -->
+                                    <div class="box-story-item">
+                                        <i class="icon-quoute-left"></i>
+                                        Cống hiến cho xã hội những sản phẩm - dịch vụ mang tính thời đại và giàu giá trị truyền thống, nhằm nâng cao chất lượng cuộc sống.
+                                    </div><!-- box-story-item -->
+                                    <div class="box-story-item">
+                                        <i class="icon-quoute-left"></i>
+                                        Là Thương hiệu dẫn đầu ngành dược, Traphaco luôn lấy lợi ích cộng đồng làm khởi sự cho mọi hoạt động, Traphaco đã có những đóng góp tích cực cho sự phát triển chung của toàn xã hội. Traphaco vinh dự được nhận rất nhiều danh hiệu, giải thưởng cao quý.
+                                    </div><!-- box-story-item -->
+                                </div><!-- owl-carousel -->
+                            </div><!-- box-story-content -->
+
+                            <div class="box-story-link">
+                                <ul class="owl-thumbs" data-slider-id="1">
+                                    <li class="owl-thumb-item">
+                                        <a href="javascript:void(0);">
+                                            <span class="bs-circle"><img src="/assets/7802a60d/img/ms-step-2-active.png" alt="Lịch sử" /></span> <!--/upload/story/3/3/b/33bfba8f82d8641c2f6a97151a8e9bfe.svg-->
+                                            <span class="bs-text story_of_traphaco" onclick="window.location='http://traphaco.vn/home/history'">Lịch sử &Gt;</span>
+                                        </a>
+                                    </li>
+                                    <li class="owl-thumb-item">
+                                        <a href="javascript:void(0);">
+                                            <span class="bs-circle"><img src="/assets/7802a60d/img/ms-step-2-active.png" alt="Bộ máy lãnh đạo" /></span><!--/upload/story/e/a/f/eaffdaaf61b934eddee85863aee87440.svg-->
+                                            <span class="bs-text story_of_traphaco" onclick="window.location='http://traphaco.vn/home/leader'">Bộ máy lãnh đạo &Gt;</span>
+                                        </a>
+                                    </li>
+                                    <li class="owl-thumb-item">
+                                        <a href="javascript:void(0);">
+                                            <span class="bs-circle"><img src="/assets/7802a60d/img/ms-step-2-active.png" alt="Tầm nhìn, sứ mệnh, giá trị cốt lõi" /></span><!--/upload/story/1/c/a/1ca43110dd5a445f0a440e257cd92af8.svg-->
+                                            <span class="bs-text story_of_traphaco" onclick="window.location='http://traphaco.vn/home/vision'">Tầm nhìn, sứ mệnh, giá trị cốt lõi &Gt;</span>
+                                        </a>
+                                    </li>
+                                    <li class="owl-thumb-item">
+                                        <a href="javascript:void(0);">
+                                            <span class="bs-circle"><img src="/assets/7802a60d/img/ms-step-2-active.png" alt="Danh hiệu và giải thưởng" /></span><!--/upload/story/c/2/7/c2748841526e38dcec62c74e929818a0.png-->
+                                            <span class="bs-text story_of_traphaco" onclick="window.location='http://traphaco.vn/home/prize'">Danh hiệu và giải thưởng &Gt;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div><!-- box-story-link -->
+                        </div><!-- box-story -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+</div><!-- home-news -->
+<div class="banner-center-outer">
+    <div class="container">
+        <div class="banner-center">
+            <div class="banner-center-item">
+                <a href="javascript:void(0);" title="Trang chủ">
+                    <img src="/upload/banner/thumbs/20f8ef28a14a2bc687e1a322ded45733.jpg" alt="Trang chủ" />
+                </a>
+            </div>
+        </div><!-- banner-center -->
+    </div><!-- container -->
+</div><!-- banner-center-outer -->
+@*<div class="home-news bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-title"><div class="box-title-name">Sản phẩm</div></div>
+                        <div class="box-content">
+                            <div class="home-news-top">
+                                <div class="grid">
+                                    @{
+                                        if (listProductByOrder.Count > 0)
+                                        {
+                                            <div class="img">
+                                                <a href="@listProductByOrder[0].RwURL" title="@listProductByOrder[0].Title">
+                                                    <img src="@listProductByOrder[0].Image" alt="@listProductByOrder[0].Title" />
+                                                </a>
+                                            </div>
+                                            <div class="g-content">
+                                                <div class="g-row">
+                                                    <a class="g-category" href="@listProductByOrder[0].CateLink" title="Tin tức">
+                                                        @listProductByOrder[0].CateName
+                                                    </a>
+                                                    <div class="g-time"><i class="fa fa-calendar-o"></i>@listProductByOrder[0].PublicTime</div>
+                                                </div>
+                                                <div class="g-row">
+                                                    <a class="g-title" href="@listProductByOrder[0].RwURL" title="@listProductByOrder[0].Title">
+                                                        @listProductByOrder[0].Title
+                                                    </a>
+                                                </div>
+                                                <div class="g-row g-desc">@listProductByOrder[0].Summary</div>
+                                            </div>
+                                        }
+                                    }
+
+                                </div><!-- grid -->
+                            </div><!-- home-news-top -->
+
+                            <div class="home-pd-slider news-grid">
+                                <div id="pdslider" class="owl-carousel">
+                                    @foreach (var article in listProductByOrder)
+                                    {
+                                        <div class="grid">
+                                            <div class="img">
+                                                <a href="@article.RwURL" title="@article.Title">
+                                                    <img src="@article.Image" alt="@article.Title" />
+                                                </a>
+                                            </div>
+                                            <div class="g-content">
+                                                <div class="g-row">
+                                                    <a class="g-category" href="@article.CateLink" title="Tin tức">
+                                                        @article.CateName
+                                                    </a>
+                                                    <div class="g-time"><i class="fa fa-calendar-o"></i>@article.PublicTime</div>
+                                                </div>
+                                                <div class="g-row">
+                                                    <a class="g-title" href="@article.RwURL" title="@article.Title">
+                                                        @article.Title
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div><!-- owl-carousel -->
+                            </div><!-- home-news-slider -->
+                        </div><!-- box-content -->
+                    </div><!-- box -->
+                </div><!-- col -->
+
+            </div><!-- row -->
+        </div><!-- container -->
+    </div><!-- home-news -->*@
+
+
+<div class="home-product bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="box">
+                    <div class="box-title">
+                        <div class="box-title-name">Sản phẩm</div>
+                    </div>
+                    <div class="box-content">
+                        <div class="home-product-slider">
+                            <div id="hpslider" class="owl-carousel">
+
+                                @{
+                                    foreach (var sanpham in listProductByOrder)
+                                    {
+                                        <div class="home-product-item">
+                                            <div class="hpi-img"><img src="@sanpham.Image" alt="@sanpham.Title" /></div>
+                                            <div class="hpi-content">
+                                                <div class="hpi-title">@sanpham.Title</div>
+                                                <div class="hpi-desc">@sanpham.Summary</div>
+                                                <a class="btn btn-success" href="@sanpham.RwURL">Xem thêm<i class="icon-right icon16-double-right"></i></a>
+                                            </div>
+                                        </div><!-- home-product-item -->
+                                    }
+                                }
+
+                            </div><!-- owl-carousel -->
+                        </div><!-- home-product-slider -->
+                        <div class="home-category">
+                            <ul>
+                                <li><a href="/sanpham" title="Xem toàn bộ sản phẩm">Xem toàn bộ sản phẩm &Gt;</a></li>
+                            </ul>
+                        </div><!-- home-category -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+            </div><!-- col -->
+
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="box-title hidden visible-xs"><div class="box-title-name">Hệ thống phân phối</div></div>
+                    <div class="box-content">
+                        <div class="box-area">
+                            <div class="box-area-map">
+                                <a class="area-point area-top" href="#mienbac"></a><a class="area-point area-top-center" href="#mienbacmientrung"></a><a class="area-point area-center" href="#mientrung"></a><a class="area-point area-bottom" href="#miennam"></a>
+                            </div><!-- box-area-map -->
+                            <div class="box-area-content">
+                                <div class="box-area-pane active">
+                                    <div class="box-area-title">Hệ thống phân phối <br /> Số 1 thị trường dược phẩm <span>Việt Nam</span></span></div>
+                                    <ul>
+                                        <li>2 Công ty con phân phối</li>
+                                        <li>24 Chi nhánh</li>
+                                        <li>Hơn 26000 khách hàng bán lẻ</li>
+                                    </ul>
+                                </div><!-- box-area-pane -->
+
+                                <div class="box-area-pane" id="mienbac">
+                                    <div class="box-area-title">Hệ thống phân phối <span>Miền Bắc</span></div>
+                                    <ul>
+                                        <li>10 chi nh&aacute;nh:Thanh H&oacute;a, Nam Định, Hải Dương, Hải Ph&ograve;ng, Quảng Ninh, Ph&uacute; Thọ, Bắc Giang, Hưng Y&ecirc;n, Th&aacute;i Nguy&ecirc;n, Y&ecirc;n B&aacute;i</li>
+                                    </ul>
+                                </div><!-- box-area-pane -->
+                                <div class="box-area-pane" id="mienbacmientrung">
+                                    <div class="box-area-title">Hệ thống phân phối <span>Bắc Miền Trung</span></div>
+                                    <ul>
+                                        <li>Chi nh&aacute;nh Nghệ An</li>
+                                    </ul>
+                                </div><!-- box-area-pane -->
+                                <div class="box-area-pane" id="mientrung">
+                                    <div class="box-area-title">Hệ thống phân phối <span>Miền Trung</span></div>
+                                    <ul>
+                                        <li>04 chi nh&aacute;nh: Chi nh&aacute;nh Miền Trung, Quảng Ng&atilde;i, Gia Lai, Kh&aacute;nh H&ograve;a</li>
+                                    </ul>
+                                </div><!-- box-area-pane -->
+                                <div class="box-area-pane" id="miennam">
+                                    <div class="box-area-title">Hệ thống phân phối <span>Miền Nam</span></div>
+                                    <ul>
+                                        <li>07 chi nh&aacute;nh:&nbsp;Hồ Ch&iacute; Minh, Vĩnh Long, B&igrave;nh Thuận, Đồng Nai, Cần Thơ, Tiền Giang, B&igrave;nh Dương</li>
+                                    </ul>
+                                </div><!-- box-area-pane -->
+
+                                <a class="btn btn-success" href="vi/phan-phoi.html" title="Xem thêm">Xem thêm<i class="icon-right icon16-double-right"></i></a>
+                            </div><!-- box-area-content -->
+                        </div><!-- box-area -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+</div><!-- home-product -->
+
+<div class="home-relation bg-gray">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-8">
+                <div class="box">
+                    <div class="box-title hidden-xs">
+                        <div class="box-title-name">Quan hệ cổ đông</div>
+                    </div>
+                    <div class="box-content">
+                        <div class="relation-list">
+                            <div class="grid">
+                                <div class="img">
+                                    <span class="g-date">30</span><span class="g-month">Mar</span>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <a class="g-title" href="home/shareHolderDetail2881.html?lang=vi&amp;id=157&amp;title=nghi-quyet-ve-viec-bo-nhiem-chuc-vu-nguoi-phu-trach-quan-tri" title="Nghị quyết về việc bổ nhiệm chức vụ Người phụ trách quản trị">
+                                            Nghị quyết về việc bổ nhiệm chức vụ Người phụ trách quản trị
+                                        </a>
+                                    </div>
+                                </div>
+                                <a class="g-download" href="/upload/shareholder/attach/18-3-30_QD_bo_nhiem_CV_Nguoi_phu_trach_quan_tri.pdf"><i class="icon32-download"></i></a>
+                            </div><!-- grid -->
+                            <div class="grid">
+                                <div class="img">
+                                    <span class="g-date">30</span><span class="g-month">Mar</span>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <a class="g-title" href="home/shareHolderDetailc19a.html?lang=vi&amp;id=158&amp;title=nghi-quyet-dai-hoi-dong-co-dong-thuong-nien-2018" title="Nghị quyết Đại hội đồng cổ đông thường niên 2018">
+                                            Nghị quyết Đại hội đồng cổ đông thường niên 2018
+                                        </a>
+                                    </div>
+                                </div>
+                                <a class="g-download" href="/upload/shareholder/attach/18-3-30_NQ_DHDCD_2018.pdf"><i class="icon32-download"></i></a>
+                            </div><!-- grid -->
+                            <div class="grid">
+                                <div class="img">
+                                    <span class="g-date">30</span><span class="g-month">Mar</span>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <a class="g-title" href="home/shareHolderDetail6d81.html?lang=vi&amp;id=159&amp;title=bien-ban-dai-hoi-dong-co-dong-thuong-nien-2018" title="Biên bản Đại hội đồng cổ đông thường niên 2018">
+                                            Biên bản Đại hội đồng cổ đông thường niên 2018
+                                        </a>
+                                    </div>
+                                </div>
+                                <a class="g-download" href="/upload/shareholder/attach/18-3-30_BB_hop_DHDCD_2018.pdf"><i class="icon32-download"></i></a>
+                            </div><!-- grid -->
+                            <div class="grid">
+                                <div class="img">
+                                    <span class="g-date">29</span><span class="g-month">Mar</span>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <a class="g-title" href="home/shareHolderDetail9276.html?lang=vi&amp;id=155&amp;title=quyet-dinh-cua-hdqt-ve-viec-mien-nhiem-vi-tri-thanh-vien-hdqt-va-bo-sung-noi-dung-hop-dhdcd-thuong-nien-2018" title="Quyết định của HĐQT về việc miễn nhiệm vị trí thành viên HĐQT và bổ sung nội dung họp ĐHĐCĐ thường niên 2018">
+                                            Quyết định của HĐQT về việc miễn nhiệm vị trí thành viên HĐQT và bổ sung nội dung họp ĐHĐCĐ thường niên 2018
+                                        </a>
+                                    </div>
+                                </div>
+                                <a class="g-download" href="/upload/shareholder/attach/2018-03-29_vv_mien_nhiem_vt_thanh_vien_HDQT.pdf"><i class="icon32-download"></i></a>
+                            </div><!-- grid -->
+                            <div class="grid">
+                                <div class="img">
+                                    <span class="g-date">29</span><span class="g-month">Mar</span>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <a class="g-title" href="home/shareHolderDetail69b6.html?lang=vi&amp;id=156&amp;title=bao-cao-thuong-nien-2017" title="Báo cáo thường niên 2017">
+                                            Báo cáo thường niên 2017
+                                        </a>
+                                    </div>
+                                </div>
+                                <a class="g-download" href="/upload/shareholder/attach/20180328_TRA_AR2017_doi.pdf"><i class="icon32-download"></i></a>
+                            </div><!-- grid -->
+                        </div><!-- relation-list -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+</div><!-- home-relation -->
+
+<div class="home-video" style="background-image: url('/upload/video/thumbs/50cc3be2947a09196d0801b4472bb600.jpg');">
+    <img src="/upload/video/thumbs/50cc3be2947a09196d0801b4472bb600.jpg" alt="Traphaco Con đường sức khỏe xanh" />
+    <div class="home-video-caption">
+        <div class="container">
+            <div class="tb-table">
+                <div class="tb-row">
+                    <div class="tb-cell">
+                        <div class="home-video-title">Con đường <span>Sức khoẻ xanh</span></span></div>
+                        <a class="home-video-play" href="javascript:void(0);" onclick="loadPopupVideo(3);"><img src="/assets/7802a60d/img/icons/icon-video.png" alt="Play" /></a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- container -->
+    </div><!-- home-video-caption -->
+</div><!-- home-video -->
+<!-- ModalGallery -->
+<div class="modal fade" id="ModalView" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            </div><!-- modal-header -->
+            <div class="modal-body">
+                <!-- content -->
+            </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div><!-- modal -->
+
+@section Script
+    {
+
+}

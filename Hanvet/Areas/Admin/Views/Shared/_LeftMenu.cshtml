@@ -1,0 +1,48 @@
+﻿@using Hanvet.Areas.Admin.Code;
+@using Extend.DataAccess.DTO;
+@{
+    AdminSession usersession = SessionHelper.getAdminSession();
+    if (usersession != null)
+    {
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    @foreach (var menu in usersession.GetMenuByFatherID(0))
+                    {
+                        <li>
+                            <a href="@menu.RwURL"><i class="fa fa-dashboard fa-fw"></i> @menu.FunctionName</a>
+                            @if (usersession.GetMenuByFatherID(menu.FunctionID).Count() > 0)
+                            {
+                                <ul class="nav nav-second-level">
+                                    @foreach (var menusecond in usersession.GetMenuByFatherID(menu.FunctionID))
+                                    {
+                                        <li>
+                                            <a href="@menusecond.RwURL">@menusecond.FunctionName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+
+
+                        </li>
+                    }
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+
+    }
+}

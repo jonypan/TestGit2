@@ -1,0 +1,178 @@
+﻿@using Extend.DataAccess.DTO
+@model PagedList.IPagedList<Extend.DataAccess.DTO.Article>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<Article> listNewArticle = ViewBag.listNewArticle;
+    List<Article> listArticleMostView = ViewBag.listArticleMostView;
+}
+<div class="main-category">
+    <div class="container">
+        <div class="home-category">
+            <ul>
+                <li class="active"><a href="tin-tuc/tin-tuc/1.html" title="Tin tức">Tin tức</a></li>
+                <li><a href="tin-tuc/khach-hang-voi-traphaco/13.html" title="Khách hàng với Traphaco">Khách hàng với Traphaco</a></li>
+                <li><a href="tin-tuc/bao-chi-voi-traphaco/14.html" title="Báo chí với Traphaco">Báo chí với Traphaco</a></li>
+                <li><a href="tin-tuc/khoe-tu-thien-nhien/8.html" title="Khỏe từ thiên nhiên">Khỏe từ thiên nhiên</a></li>
+                <li><a href="thu-vien-anh.html" title="Thư viện ảnh">Thư viện ảnh</a></li>
+            </ul>
+        </div><!-- home-category -->
+    </div>
+</div><!-- main-category -->
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="box">
+                    <div class="box-content">
+                        <div class="home-news-top">
+                            <div class="grid">
+                                <div class="img">
+                                    <a href="@Model[0].RwURL" title="@Model[0].Title">
+                                        <img src="@Model[0].Banner1" alt="@Model[0].Title" />
+                                    </a>
+                                </div>
+                                <div class="g-content">
+                                    <div class="g-row">
+                                        <a class="g-category" href="@Model[0].CateLink" title="@Model[0].CateName">
+                                            @Model[0].CateName
+                                        </a>
+                                        <div class="g-time"><i class="fa fa-calendar-o"></i>@Model[0].PublicTime</div>
+                                    </div>
+                                    <div class="g-row">
+                                        <a class="g-title" href="tin-tuc/tin-tuc/1/324-dai-hoi-dong-co-dong-thuong-nien-traphaco-nam-2018.html" title="Đại hội đồng cổ đông thường niên Traphaco năm 2018">
+                                            @Model[0].Title
+                                        </a>
+                                    </div>
+                                    <div class="g-row g-desc">@Model[0].Summary</div>
+                                </div>
+                            </div><!-- grid -->
+                        </div><!-- home-news-top -->
+
+                        <div class="news-grid">
+                            <ul class="clearfix">
+
+                                @{
+                                    int count = 0;
+                                    foreach (var article in Model)
+                                    {
+                                        count++;
+                                        if (count != 1)
+                                        {
+                                            <li>
+                                                <div class="grid">
+                                                    <div class="img">
+                                                        <a href="@article.RwURL" title="@article.Title">
+                                                            <img src="@article.Banner1" alt="@article.Title" />
+                                                        </a>
+                                                    </div>
+                                                    <div class="g-content">
+                                                        <div class="g-row">
+                                                            <a class="g-category" href="@article.CateLink" title="@article.CateName">
+                                                                @article.CateName
+                                                            </a>
+                                                            <div class="g-time"><i class="fa fa-calendar-o"></i>@article.PublicTime</div>
+                                                        </div>
+                                                        <div class="g-row">
+                                                            <a class="g-title" href="@article.RwURL" title="@article.Title">
+                                                                @article.Title
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- grid -->
+                                            </li>
+                                        }
+                                    }
+                                }
+
+                            </ul>
+                        </div><!-- news-grid -->
+
+                        <div class="box-page">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </div><!-- box-page -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+            </div><!-- col -->
+
+            <div class="col-md-4">
+                <div class="box sidebar-box">
+                    <div class="box-title"><div class="box-title-name">Bài mới nhất</div></div>
+                    <div class="box-content">
+                        <div class="news-featured">
+                            @if (listNewArticle.Count > 0)
+                            {
+                                foreach (var newArticle in listNewArticle)
+                                {
+                                    <div class="grid">
+                                        <div class="img">
+                                            <a href="@newArticle.RwURL" title="@newArticle.Title">
+                                                <img src="@newArticle.Banner1" alt="@newArticle.Title" />
+                                            </a>
+                                        </div>
+                                        <div class="g-content">
+                                            <div class="g-row">
+                                                <div class="g-time"><i class="fa fa-calendar-o"></i>@newArticle.PublicTime</div>
+                                            </div>
+                                            <div class="g-row">
+                                                <a class="g-title" href="@newArticle.RwURL" title="@newArticle.Title">
+                                                    @newArticle.Title
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        </div><!-- news-featured -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+
+                <div class="box sidebar-box">
+                    <div class="box-title"><div class="box-title-name">Bài xem nhiều</div></div>
+                    <div class="box-content">
+                        <div class="news-featured">
+                            @if (listArticleMostView.Count > 0)
+                            {
+                                foreach (var mostViewArticle in listArticleMostView)
+                                {
+                                    <div class="grid">
+                                        <div class="img">
+                                            <a href="@mostViewArticle.RwURL" title="@mostViewArticle.Title">
+                                                <img src="@mostViewArticle.Banner1" alt="@mostViewArticle.Title" />
+                                            </a>
+                                        </div>
+                                        <div class="g-content">
+                                            <div class="g-row">
+                                                <div class="g-time"><i class="fa fa-calendar-o"></i>@mostViewArticle.PublicTime</div>
+                                            </div>
+                                            <div class="g-row">
+                                                <a class="g-title" href="@mostViewArticle.RwURL" title="@mostViewArticle.Title">
+                                                    @mostViewArticle.Title
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        </div><!-- news-featured -->
+                    </div><!-- box-content -->
+                </div><!-- box -->
+                @*<div class="box-banner">
+                        <div id="sidebarbanner" class="owl-carousel">
+                            <div class="bb-item">
+                                <a href="javascript:void(0);" title="Cebraton trang tin tuc">
+                                    <iframe class="mediaContent__animation" scrolling="no" src="../upload/html/extract/1476349403/index.html" frameborder="0" width="300" height="250"></iframe>
+                                </a>
+                            </div>
+                        </div><!-- owl-carousel -->
+                    </div><!-- box-banner -->*@
+
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+</div><!-- home-news -->
